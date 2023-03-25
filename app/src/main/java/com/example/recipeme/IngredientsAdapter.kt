@@ -8,7 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class IngredientsAdapter (val context: Context, private val ings: List<Ingredient>, private val iListener: IngredientInterface?): RecyclerView.Adapter<IngredientsAdapter.ViewHolder>(){
+class IngredientsAdapter (val context: Context, private val ings: List<Ingredient>): RecyclerView.Adapter<IngredientsAdapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder{
         val context = parent.context;
         val inflater = LayoutInflater.from(context);
@@ -16,7 +16,7 @@ class IngredientsAdapter (val context: Context, private val ings: List<Ingredien
         return ViewHolder(itemView);
     }
 
-    inner class ViewHolder(iView: View): RecyclerView.ViewHolder(iView), View.OnClickListener{
+    inner class ViewHolder(iView: View): RecyclerView.ViewHolder(iView){
         var iItem: Ingredient? = null
         val nameView: TextView;
         val quantityView: TextView;
@@ -24,13 +24,10 @@ class IngredientsAdapter (val context: Context, private val ings: List<Ingredien
         init {
             nameView = iView.findViewById(R.id.tvIngredientNameItem);
             quantityView = iView.findViewById(R.id.tvIngredientQuantityItem);
-            iView.setOnClickListener(this)
+            //iView.setOnClickListener(this)
         }
 
-        override fun onClick(v: View?) {
-            val index = "hi"
-            val toast = Toast.makeText(context, index, Toast.LENGTH_SHORT);
-        }
+
     }
 
 
@@ -43,7 +40,9 @@ class IngredientsAdapter (val context: Context, private val ings: List<Ingredien
         holder.itemView.setOnClickListener{
             holder.iItem?.let{
                 item->
-                iListener?.onClick(item)
+                val index = "hi"
+                val toast = Toast.makeText(context, index, Toast.LENGTH_SHORT);
+                toast.show()
             }
         }
     }
