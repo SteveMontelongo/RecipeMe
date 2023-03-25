@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         val ingQuantityView = findViewById<EditText>(R.id.tvIngredientsQuantity);
 
         //adapter to connect views with the recycler view
-        val adapter = IngredientsAdapter(ingredients)
+        val adapter = IngredientsAdapter(this, ingredients, )
         ingRv.adapter = adapter;
         ingRv.layoutManager = LinearLayoutManager(this);
 
