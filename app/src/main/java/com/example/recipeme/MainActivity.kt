@@ -1,8 +1,10 @@
 package com.example.recipeme
 
 import android.app.Activity
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -23,6 +25,9 @@ class MainActivity : AppCompatActivity() {
 
         //Adding views to connect xml and class variables
         ingRv = findViewById<RecyclerView>(R.id.recyclerView);
+
+        val recipeListBtn = findViewById<Button>(R.id.recipeListButton)
+
         val deleteAll = findViewById<Button>(R.id.btnDeleteAll)
         val addButton = findViewById<Button>(R.id.btnAddItem);
         val ingNameView = findViewById<EditText>(R.id.tvIngredientsName);
@@ -75,7 +80,23 @@ class MainActivity : AppCompatActivity() {
             }
             ingredients.clear()
         }
+
+        recipeListBtn.setOnClickListener{
+            val intent = Intent(this, RecipesList::class.java)
+            this.startActivityForResult(intent, 1)
+        }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode == Activity.RESULT_OK){
+            Log.d("DebugLog", "Result OK")
+        }
+        if(resultCode == Activity.RESULT_CANCELED){
+            Log.d("DebugLog", "I have canceled")
+        }
+    }
+
     fun hideKeyboard(activity: Activity) {
         val imm: InputMethodManager =
             activity.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager

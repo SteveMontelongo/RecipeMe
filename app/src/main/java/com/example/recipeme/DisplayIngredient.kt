@@ -3,5 +3,5 @@ package com.example.recipeme
 
 data class DisplayIngredient(
     val name: String?,
-    val quantity: String?,
+    var quantity: String?,
 ) : java.io.Serializable
