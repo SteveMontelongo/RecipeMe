@@ -6,9 +6,10 @@ import androidx.room.RoomDatabase
 import androidx.room.Room
 
 
-@Database(entities = [IngredientEntity::class], version = 1)
+@Database(entities = [IngredientEntity::class, FridgeEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun ingredientDao(): IngredientDao
+    abstract fun fridgedao(): FridgeDao
     companion object {
 
         @Volatile
