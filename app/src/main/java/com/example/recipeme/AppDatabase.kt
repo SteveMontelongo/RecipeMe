@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase
 import androidx.room.Room
 
 
-@Database(entities = [IngredientEntity::class, FridgeEntity::class], version = 1)
+@Database(entities = [IngredientEntity::class, FridgeEntity::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun ingredientDao(): IngredientDao
     abstract fun fridgedao(): FridgeDao
@@ -22,6 +22,6 @@ abstract class AppDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) = Room.databaseBuilder(
             context.applicationContext,
             AppDatabase::class.java, "Ingredients-db"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 }
