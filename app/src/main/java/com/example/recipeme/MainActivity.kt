@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         //Adding views to connect xml and class variables
         ingRv = findViewById<RecyclerView>(R.id.recyclerView);
+        val deleteAll = findViewById<Button>(R.id.btnDeleteAll)
         val addButton = findViewById<Button>(R.id.btnAddItem);
         val ingNameView = findViewById<EditText>(R.id.tvIngredientsName);
         val ingQuantityView = findViewById<EditText>(R.id.tvIngredientsQuantity);
@@ -66,8 +67,13 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             hideKeyboard(this);
+        }
 
-
+        deleteAll.setOnClickListener{
+            lifecycleScope.launch(IO){
+                (application as IngredientApplication).db.ingredientDao().deleteAll()
+            }
+            ingredients.clear()
         }
     }
     fun hideKeyboard(activity: Activity) {
