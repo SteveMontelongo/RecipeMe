@@ -8,7 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
-class IngredientsAdapter (val context: Context, private val ings: List<Ingredient>): RecyclerView.Adapter<IngredientsAdapter.ViewHolder>(){
+class IngredientsAdapter (val context: Context, private val ings: List<DisplayIngredient>): RecyclerView.Adapter<IngredientsAdapter.ViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder{
         val context = parent.context;
         val inflater = LayoutInflater.from(context);
@@ -17,20 +17,17 @@ class IngredientsAdapter (val context: Context, private val ings: List<Ingredien
     }
 
     inner class ViewHolder(iView: View): RecyclerView.ViewHolder(iView){
-        var iItem: Ingredient? = null
+        var iItem: DisplayIngredient? = null
         val nameView: TextView;
         val quantityView: TextView;
 
         init {
             nameView = iView.findViewById(R.id.tvIngredientNameItem);
             quantityView = iView.findViewById(R.id.tvIngredientQuantityItem);
-            //iView.setOnClickListener(this)
         }
 
 
     }
-
-
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = ings[position]
@@ -40,9 +37,11 @@ class IngredientsAdapter (val context: Context, private val ings: List<Ingredien
         holder.itemView.setOnClickListener{
             holder.iItem?.let{
                 item->
-                val index = "hi"
-                val toast = Toast.makeText(context, index, Toast.LENGTH_SHORT);
-                toast.show()
+
+                val index = item.name as String
+//                val toast = Toast.makeText(context, index, Toast.LENGTH_SHORT);
+//                toast.show()
+                (context as MainActivity).dummyfunction(index)
             }
         }
     }
