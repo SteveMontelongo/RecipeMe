@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             adapter.notifyDataSetChanged()
             ingNameView.getText().clear();
             ingQuantityView.getText().clear();
-            hideKeyboard(this);
+
             ingredients.let { list ->
                 lifecycleScope.launch(IO) {
                     (application as IngredientApplication).db.ingredientDao().deleteAll()
@@ -65,6 +65,7 @@ class MainActivity : AppCompatActivity() {
                     })
                 }
             }
+            hideKeyboard(this);
 
 
         }
