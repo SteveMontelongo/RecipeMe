@@ -1,4 +1,3 @@
 package com.example.recipeme
 
-class Recipe {
-}
+class Recipe(val name: String, val ingredients : ArrayList<Ingredient>)

@@ -6,14 +6,23 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import androidx.recyclerview.widget.RecyclerView
 
 class RecipesList : AppCompatActivity() {
+    var recipes: MutableList<Recipe> = ArrayList<Recipe>();
+    lateinit var recipeRv: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_recipes_list)
 
         val recipeListBtn = findViewById<Button>(R.id.addCstmRecipeBtn)
         val backBtn = findViewById<Button>(R.id.backBtn)
+
+        recipeRv = findViewById(R.id.rvRecipes)
+        val adapter = RecipesAdapter(this, recipes)
+
+        recipeRv.adapter = adapter
+
         backBtn.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             setResult(RESULT_OK, intent)
