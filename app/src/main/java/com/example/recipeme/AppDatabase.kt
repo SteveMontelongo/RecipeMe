@@ -9,7 +9,6 @@ import androidx.room.Room
 @Database(entities = [IngredientEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun ingredientDao(): IngredientDao
-
     companion object {
 
         @Volatile

@@ -1,3 +1,5 @@
 package com.example.recipeme
 
-class Recipe(val name: String, val ingredients : ArrayList<Ingredient>)
+import kotlinx.serialization.Serializable
+@Serializable
+class Recipe(val name: String, val ingredients : ArrayList<RecipeIngredient>)
